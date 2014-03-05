@@ -1,0 +1,16 @@
+<!ENTITY Ouml "&#214;">
+<!ENTITY ouml "&#246;">
+<!ENTITY brkbar "&#166;">
+<!ENTITY ccedil "&#231;">
+
+<!ELEMENT cards (card*)>
+<!ELEMENT card (title,id,user,date,contant?,signature?,image?)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT contant (#PCDATA)>
+<!ELEMENT signature (#PCDATA)>
+
+<!ELEMENT image (big,small*)>
+<!ELEMENT big (#PCDATA)>
+<!ELEMENT small (#PCDATA)>

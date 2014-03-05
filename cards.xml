@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<cards>
+	<card>
+		<title>Morotstarta</title>
+		<id>34</id>
+		<user>Sebastian Rauhala</user>
+		<date>2012-08-18</date>
+		<content>Hej hopp</content>
+		<signature>Din kara</signature>
+		<images>
+			<big>http://blablabalablalba</big>
+			<small>http://blablabalablalba</small>
+			<small>http://blablabalablalba</small>
+		</images>
+	</card>
+	
+	<card>
+		<title>Morotstarta</title>
+		<id>34</id>
+		<user>Sebastian Rauhala</user>
+		<date>2012-08-18</date>
+		<content>Hej hopp</content>
+		<signature>Din kara</signature>
+		<images>
+			<big>http://blablabalablalba</big>
+			<small>http://blablabalablalba</small>
+			<small>http://blablabalablalba</small>
+		</images>
+	</card>
+	
+	
+</cards>

@@ -1,0 +1,119 @@
+﻿
+#post-card{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#card-container
+{
+	margin-left: auto;
+	margin-right: auto;
+	background-color:#6666FF;
+	width:600px;
+}
+
+.card-rubrik
+{
+position:relative;
+left:300px;
+
+}
+
+.card
+{
+	position:relative;
+	margin-bottom:10px;
+	padding:1em;
+	background-color:#CCCCFF;
+	/*Gyllene snittet nästan*/
+	width:600px;
+	height:375px;
+}
+
+img.large-image
+{
+	position:relative;
+	display:inline-block;
+	height:150px;
+	top:10px;
+	left:10px;
+}
+
+
+
+.large-image-container
+{
+	float:left;
+	position:absolute;
+	width:170px;
+	height:170px;
+	background-color:#FFFFFF;
+}
+
+
+.small-images-container
+{
+	position:absolute;
+	float:left;
+	height:160px;
+	width:260px;
+	top:13em;
+
+}
+
+img.small
+{
+	position:relative;
+	display:inline-block;/*inline för att bilderna ska hålla sig inom blocket*/
+	top:2px;
+	left:2px;
+}
+.small-image
+{
+	float:left;
+	display:inline-block;
+	width:80px;
+	height:80px;
+	margin:1px;
+	background-color:#FFFFFF;
+}
+
+
+.text-content
+{
+
+	position:absolute;
+	left:330px;
+	height:200px;
+	width:300px;
+}
+
+.qoute
+{
+	font-family:"Arial";
+	font-weight:bold;
+	position:absolute;
+	font-size:400%;
+}
+
+.qoute-first
+{
+	top:-10px;
+	left:-15px;
+
+}
+
+.qoute-last
+{
+	top:-2px;
+	
+
+}
+
+.matrix{
+	-webkit-transform: matrix(1,0,0,1,-65,10);
+	-moz-transform: matrix(1,0,0,1,-65px,10px);
+	-ms-transform: matrix(1,0,0,1,-65,10);
+	-o-transform: matrix(1,0,0,1,-65,10);
+	transform: matrix(1,0,0,1,-65,10);
+}

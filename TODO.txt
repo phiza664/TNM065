@@ -1,0 +1,5 @@
+SAker att göra till projjen
+
+
+	-Ta ut information ur databasen till XML
+	-Göra xsl transformation för att presentera till webben

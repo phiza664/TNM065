@@ -1,0 +1,4 @@
+
+SELECT Name, User_ID, Card_ID, Title, Content, Image_URL, card.Date_Created FROM USER JOIN CARD ON user.user_id IN (SELECT User_ID FROM MAKES) 
+
+SELECT DISTINCT Card_ID, Title, Content, Image_URL, Date_Created FROM CARD WHERE Card_ID  IN (SELECT Card_id FROM MAKES WHERE  makes.user_id = "5")
