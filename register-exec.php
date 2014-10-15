@@ -13,11 +13,11 @@ $link_id = db_connect();
 	$errflag = false;
 	
 	if($user_name == '') {
-		$errmsg_arr = 'Anv‰ndarnamn saknas ';
+		$errmsg_arr = 'Anv√§ndarnamn saknas ';
 		$errflag = true;
 	}
 	if($password == '') {
-		$errmsg_arr .= 'Lˆsenord saknas ';
+		$errmsg_arr .= 'L√∂senord saknas ';
 		$errflag = true;
 	}
 	if($password == '') {
@@ -28,13 +28,13 @@ $link_id = db_connect();
 	$date = getdate();
 	$date = "$date[year]-$date[mon]-$date[mday]";
 
-	//Check for duplicate anv‰ndarnamn ID
+	//Check for duplicate anv√§ndarnamn ID
 	if($user_name != '') {
 		$qry = "SELECT * FROM USER WHERE User_Name='$user_name'";
 		$result = mysql_query($qry);
 		if($result) {
 			if(mysql_num_rows($result) > 0) {
-				$errmsg_arr .= 'email_adress anv‰nds redan ';
+				$errmsg_arr .= 'email_adress anv√§nds redan ';
 				$errflag = true;
 			}
 			@mysql_free_result($result);
@@ -72,7 +72,7 @@ $link_id = db_connect();
 		$_SESSION["inloggning"] = true;
 
 		// After registration user i moved to the main page
-		header("Location: http://localhost/projekt/main.php"); 
+		header("Location: projekt/main.php"); 
 		exit();
 	}else {
 		die("Query failed");

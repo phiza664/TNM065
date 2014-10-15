@@ -15,11 +15,16 @@ and creates xml structured
 		<Title>Mitt första inlägg</Title>
 		<Image_URL>http://www.image.com/image.jpg</Image_URL>
 	</card>
+	.
+	.
+	.
+</cards>
 
 */
 
 
-//include '../db/db.php';	//includes db connection
+include '../db/db.php';	//includes db connection
+db_connect();
 mysql_query('SET NAMES utf8');
 mysql_query('SET CHARACTER_SET utf8;'); 
 $result = mysql_query("SELECT * FROM card");

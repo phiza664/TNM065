@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //Start session
 session_start();
 	
@@ -8,36 +8,40 @@ db_connect();
 
  if (isset($_POST['submit'])) {
 	
+
+
 	$user = $_POST['user'];
 	$user = mysql_real_escape_string($user);
+	echo $user;
 	
 	$pass = $_POST['pass'];
 	$pass = mysql_real_escape_string($pass);
+	echo $pass;
 
 	$result = mysql_query("SELECT * 
-	FROM USER
+	FROM user
 	LEFT JOIN userclass ON user.user_id = userclass.user_id
 	WHERE user.User_Name =  '$user'
 	AND user.Password =  '$pass'");
 	
 	
 	while ($row = mysql_fetch_array($result)) {
-	//Save user_id and user_class to the session.
-	$_SESSION['user_id'] = $row['User_ID']; 
-	$_SESSION['class'] = $row['User_Class'];
-	// approve the login
-	$_SESSION["inloggning"] = true;
-	
-	
-	//Move user to correct place acording to user_class
-	if ($row['User_Class'] == "admin"){
-		header("Location: main_admin.php");
+		//Save user_id and user_class to the session.
+		$_SESSION['user_id'] = $row['User_ID']; 
+		$_SESSION['class'] = $row['User_Class'];
+		// approve the login
+		$_SESSION["inloggning"] = true;
+
+		
+		//Move user to correct place acording to user_class
+		if ($row['User_Class'] == "admin"){
+			header("Location: main_admin.php");
+		}
+		else{
+			header("Location: main.php");
+		}
+		exit; 
 	}
-	else{
-		header("Location: main.php");
-	}
-	exit; 
-}
 }
 
 ?>
