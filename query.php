@@ -1,8 +1,8 @@
 ﻿<?php
 // contect database
 include_once("db/db.php");
-//$link_id = db_connect();
-
+$link_id = db_connect();
+echo $link_id;
 
 function printjs(){
 
@@ -138,66 +138,67 @@ if(isset($_POST["user_id"]) && isset($_POST['user_class']) ){
 }
 
 function save_card(){
-// Save card funtion
-if (isset($_POST['submit2'])){
+	global $link_id;
+	// Save card funtion
+	if (isset($_POST['submit2'])){
 
-	$title = $_POST['title'];
-	$title = mysql_real_escape_string($title);
-	
-	$content = $_POST['content'];
-	$content = mysql_real_escape_string($content);
-	
-	$imageurl = $_POST['imageurl'];
-	$imageurl = mysql_real_escape_string($imageurl);
-	
-	$signature = $_POST['signature'];
-	$signature = mysql_real_escape_string($signature);
-	
-	$date = getdate();
-	$date = "$date[year]-$date[mon]-$date[mday]";
-	
-	$errmsg_arr = '';
-	$errflag = false;
-	
-	if($title == '') {
-		$errmsg_arr .= 'Titel saknas ';
-		$errflag = true;
-	}
-	if($imageurl == '') {
-		$errmsg_arr .= 'Namn saknas ';
-		$errflag = true;
-	}
-	if($signature == '') {
-		$errmsg_arr .= 'Signatur saknas ';
-		$errflag = true;
-	}
-	
-	//Create INSERT query
-	if($errflag != true){
-	$qry = "INSERT INTO CARD(Title, Content, Image_URL, Signature, Date_Created) 
-	VALUES('$title','$content', '$imageurl', '$signature', '$date')";
-	
-
-	$result = @mysql_query($qry);
-	$card_id = @mysql_insert_id($link_id);
-	
- 	if($result) {
-		$errmsg_arr .= 'Kortet sparat! ';
-		$user_id = $_SESSION['user_id']; //User_ID from login
-		//Insert Query to create link between card_id and user_id in makes.
-		$qry2 = "INSERT INTO MAKES(Card_ID, User_ID) VALUES ($card_id, $user_id)";
-		$result = mysql_query($qry2);
-		if($result){
-			$errmsg_arr .= 'Kortet länkat med användare!';
-		}else{
-			die("Query failed! Makes");
+		$title = $_POST['title'];
+		$title = mysql_real_escape_string($title);
+		
+		$content = $_POST['content'];
+		$content = mysql_real_escape_string($content);
+		
+		$imageurl = $_POST['imageurl'];
+		$imageurl = mysql_real_escape_string($imageurl);
+		
+		$signature = $_POST['signature'];
+		$signature = mysql_real_escape_string($signature);
+		
+		$date = getdate();
+		$date = "$date[year]-$date[mon]-$date[mday]";
+		
+		$errmsg_arr = '';
+		$errflag = false;
+		
+		if($title == '') {
+			$errmsg_arr .= 'Titel saknas ';
+			$errflag = true;
+		}
+		if($imageurl == '') {
+			$errmsg_arr .= 'Namn saknas ';
+			$errflag = true;
+		}
+		if($signature == '') {
+			$errmsg_arr .= 'Signatur saknas ';
+			$errflag = true;
+		}
+		
+		//Create INSERT query
+		if($errflag != true){
+		$qry = "INSERT INTO CARD(Title, Content, Image_URL, Signature, Date_Created) 
+		VALUES('$title','$content', '$imageurl', '$signature', '$date')";
+		
+		$result = mysql_query($qry);
+		$card_id = mysql_insert_id($link_id);
+		
+	 	if($result) {
+			$errmsg_arr .= 'Kortet sparat! ';
+			$user_id = $_SESSION['user_id']; //User_ID from login
+			echo "user_id $user_id  card_id  $card_id";
+			//Insert Query to create link between card_id and user_id in makes.
+			$qry2 = "INSERT INTO MAKES(Card_ID, User_ID) VALUES ('$card_id', '$user_id')";
+			$result = mysql_query($qry2);
+			if($result){
+				$errmsg_arr .= 'Kortet länkat med användare!';
+			}else{
+				die("Query failed! Makes");
+			}
+		}
+		else{
+			die("Query failed! Card");
+		} 
 		}
 	}
-	else{
-		die("Query failed! Card");
-	} 
-	}
-}
 }
 
 function logout(){
@@ -218,10 +219,10 @@ function update_user(){
 }
 
 function wearify(){
-if ((!isset($_SESSION["inloggning"])) || ($_SESSION["inloggning"] != true)) {
-header("Location: index.php");
-exit;
-}
+	if ((!isset($_SESSION["inloggning"])) || ($_SESSION["inloggning"] != true)) {
+		header("Location: index.php");
+		exit;
+	}
 }
 
 

@@ -2,10 +2,6 @@
 // startar sessionen
 session_start();
 
-// contect database
-include("db/db.php");
-$link_id = db_connect();
-
 //inqlude query.php where all php functions is stored. 
 include("query.php");
 
@@ -83,7 +79,7 @@ if(isset($_GET['format'])){
 	</table>
 	</form>
 
-	<div id="post-card" class="card">
+<!-- 	<div id="post-card" class="card">
 		<div class="large-image-container">
 			
 		</div>
@@ -92,7 +88,7 @@ if(isset($_GET['format'])){
 			<p><span class="qoute qoute-first">ʻ</span>qwe<span class="qoute qoute-last">‚</span></p>
 		</div>
 		
-	</div>
+	</div> -->
 <?php 
 	print $output;
 
