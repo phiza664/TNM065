@@ -1,4 +1,11 @@
 ﻿<?php
+// contect database
+include_once("db/db.php");
+$link_id = db_connect();
+
+if(is_null($link_id)){
+	echo "Missing connection reference";
+}
 // startar sessionen
 session_start();
 
@@ -16,8 +23,6 @@ logout();
 
 //save new card handeler
 save_card();
-
-
 
 
 if(isset($_GET['format'])){

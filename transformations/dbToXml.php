@@ -20,15 +20,16 @@ and creates xml structured
 
 
 //include '../db/db.php';	//includes db connection
+$user_id = $_SESSION['user_id']; //User_ID from login
+
 mysql_query('SET NAMES utf8');
-mysql_query('SET CHARACTER_SET utf8;'); 
-$result = mysql_query("SELECT * FROM card");
+mysql_query('SET CHARACTER_SET utf8;');
+$result = mysql_query("SELECT * FROM card WHERE Card_ID in (SELECT Card_ID FROM makes WHERE  User_ID = '$user_id')");
 $xmlString = "";
-$xmlString .="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+$xmlString .="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";				
 //$xmlString .="<!DOCTYPE cards SYSTEM \"cards.dtd\">";
+
 $xmlString .="<cards>";
-
-
 while($row = mysql_fetch_object($result))
 {
 	$xmlString .="<card>";
@@ -47,11 +48,10 @@ while($row = mysql_fetch_object($result))
 //	$title = $row->Title;
 //	$image = $row->Image_URL;
 	
-	
-
-}
-
+}	
 $xmlString .="</cards>";
+
+
 
 //Fixr transformen av sidan och displayar den
 include 'transform.php';

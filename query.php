@@ -1,8 +1,4 @@
 ﻿<?php
-// contect database
-include_once("db/db.php");
-$link_id = db_connect();
-echo $link_id;
 
 function printjs(){
 
@@ -137,9 +133,9 @@ if(isset($_POST["user_id"]) && isset($_POST['user_class']) ){
 }
 }
 
+// Save card funtion
 function save_card(){
 	global $link_id;
-	// Save card funtion
 	if (isset($_POST['submit2'])){
 
 		$title = $_POST['title'];
@@ -184,7 +180,6 @@ function save_card(){
 	 	if($result) {
 			$errmsg_arr .= 'Kortet sparat! ';
 			$user_id = $_SESSION['user_id']; //User_ID from login
-			echo "user_id $user_id  card_id  $card_id";
 			//Insert Query to create link between card_id and user_id in makes.
 			$qry2 = "INSERT INTO MAKES(Card_ID, User_ID) VALUES ('$card_id', '$user_id')";
 			$result = mysql_query($qry2);
