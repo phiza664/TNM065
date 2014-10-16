@@ -44,52 +44,78 @@ db_connect();
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Test</title>
-<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="main" charset="iso-8859-1"/>
+	<title>CardViz</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Image">
+	<meta name="author" content="Sebastian Rauhala, Philip Zanderholm">
+	<link rel="icon" href="content/img/Plants-Tomato-icon.png">
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="main" charset="iso-8859-1"/>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/template.css" rel="stylesheet">
 </head>
 
-<div id="header">
-<h1>Worlds greatest postcard site!</h1>
-</div>
+<body>
 
-<p><img id="welcomeimage" src="happy-people.jpg" alt="welcomeimage" /></p>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">CardViz</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
-<form id="loginForm" action="" method="post" name="loginform"> 
-<table> 
-<h2>Logga in</h2>
-<tr><th>Användarnamn (email-adress)</th><td><input name="user" type="text"></td></tr>
-<tr><th>Lösenord</th><td><input name="pass" type="password"></td></tr> 
-<tr><td>&nbsp;</td><td><input type="submit" name="submit" value="Logga in"></td></tr> 
-</table> 
-</form>
+	<p><img id="welcomeimage" src="happy-people.jpg" alt="welcomeimage" /></p>
 
-<form id="regForm" name="regForm" method="post" action="register-exec.php">
-  <table>
-  <h2>Registrera ny användare</h2>
-    <tr>
-      <th>önskat namn </th>
-      <td><input name="new_name" type="text" class="textfield" id="new_name" /></td>
-    </tr>
-    <tr>
-      <th>email-adress </th>
-      <td><input name="new_user_name" type="text" class="textfield" id="new_user_name" /></td>
-    </tr>
-    <tr>
-      <th>önskat Lösenord</th>
-      <td><input name="new_password" type="password" class="textfield" id="new_password" /></td>
-    </tr>
+	<form id="loginForm" action="" method="post" name="loginform"> 
+	<table> 
+	<h2>Logga in</h2>
+	<tr><th>Användarnamn (email-adress)</th><td><input name="user" type="text"></td></tr>
+	<tr><th>Lösenord</th><td><input name="pass" type="password"></td></tr> 
+	<tr><td>&nbsp;</td><td><input type="submit" name="submit" value="Logga in"></td></tr> 
+	</table> 
+	</form>
 
-    <tr>
-      <td>&nbsp;</td>
-      <td><input type="submit" name="submit2" value="Registrera" /></td>
-    </tr>
-  </table>
-<?php
-	if(isset($_SESSION['ERRMSG_ARR'])){
-		print $_SESSION['ERRMSG_ARR'];
-	}
-?>  
-</form>
+	<form id="regForm" name="regForm" method="post" action="register-exec.php">
+	  <table>
+	  <h2>Registrera ny användare</h2>
+	    <tr>
+	      <th>önskat namn </th>
+	      <td><input name="new_name" type="text" class="textfield" id="new_name" /></td>
+	    </tr>
+	    <tr>
+	      <th>email-adress </th>
+	      <td><input name="new_user_name" type="text" class="textfield" id="new_user_name" /></td>
+	    </tr>
+	    <tr>
+	      <th>önskat Lösenord</th>
+	      <td><input name="new_password" type="password" class="textfield" id="new_password" /></td>
+	    </tr>
 
+	    <tr>
+	      <td>&nbsp;</td>
+	      <td><input type="submit" name="submit2" value="Registrera" /></td>
+	    </tr>
+	  </table>
+	<?php
+		if(isset($_SESSION['ERRMSG_ARR'])){
+			print $_SESSION['ERRMSG_ARR'];
+		}
+	?>  
+	</form>
+
+</boady>
 </html>
