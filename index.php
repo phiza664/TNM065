@@ -50,9 +50,8 @@ db_connect();
 	<meta name="description" content="Image">
 	<meta name="author" content="Sebastian Rauhala, Philip Zanderholm">
 	<link rel="icon" href="content/img/Plants-Tomato-icon.png">
-	<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="main" charset="iso-8859-1"/>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/template.css" rel="stylesheet">
+	<link href="css/tamplate.css" rel="stylesheet">
 </head>
 
 <body>

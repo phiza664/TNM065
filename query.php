@@ -197,12 +197,12 @@ function save_card(){
 }
 
 function logout(){
-if (isset($_POST['submit'])){
-	unset($_SESSION["inloggning"]);
-	unset($_SESSION["User_Class"]);
-	unset($_SESSION["User_ID"]);
-	header("Location: index.php" );
-}
+	if (isset($_POST['submit'])){
+		unset($_SESSION["inloggning"]);
+		unset($_SESSION["User_Class"]);
+		unset($_SESSION["User_ID"]);
+		header("Location: index.php" );
+	}
 }
 
 function update_card($card_id){
