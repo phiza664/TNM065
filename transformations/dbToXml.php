@@ -1,6 +1,9 @@
 ﻿<?php
 
+//Fixr transformen av sidan och displayar den
+include 'transform.php';
 /*
+ *
 This file handles the xml extraction from the database
 and creates xml structured
 
@@ -22,10 +25,17 @@ and creates xml structured
 
 */
 
+//only to test this file alone
+if(isset($_GET['test'])){
+		echo $_GET['test'];
+		$format = $_GET['format'];
+		include '../db/db.php';	//includes db connection
+		db_connect();
+		$user_id = $_GET['test']; //should escape
+}else{
 
-
-//include '../db/db.php';	//includes db connection
-$user_id = $_SESSION['user_id']; //User_ID from login
+	$user_id = $_SESSION['user_id']; //User_ID from login
+}
 
 
 mysql_query('SET NAMES utf8');
@@ -58,9 +68,17 @@ while($row = mysql_fetch_object($result))
 $xmlString .="</cards>";
 
 
+//Decide in which format the xml should be outputted in
+if(isset($_GET['format'])){
+	$format = $_GET['format'];
+}
+else
+{
+	$format = "html";
+}
 
-//Fixr transformen av sidan och displayar den
-include 'transform.php';
+
+$output = transformXML($xmlString, $format);
 
 ?>
 
