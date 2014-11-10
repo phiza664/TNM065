@@ -32,7 +32,6 @@ user_class_handeler()
 
 
 <body>
-
 	<div id="header">
 		<h1>Congratulation! Admin</h1>
 	</div>
