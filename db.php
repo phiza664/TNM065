@@ -1,5 +1,5 @@
 <?php
-$con = mysql_connect("localhost","root","");
+$con = mysql_connect("localhost","TNM065","wb84VhJeBpjuZXU7");
 if (!$con)
   {
   die('Could not connect: ' . mysql_error());
@@ -16,7 +16,7 @@ class ConnectDB
     private $serverName;
     private $userName;
     private $password;
-	private $password;
+
     
 	function ConnectDB($serverName,$userName,$password) {
         $this->setServerName($serverName);
@@ -38,11 +38,12 @@ class ConnectDB
     
 }
 
+/*
 $person = new Person();
 $person->setPrefix("Mr.");
 $person->setGivenName("John");
 
 echo($person->getPrefix());
 echo($person->getGivenName());
-
+*/
 ?>
