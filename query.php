@@ -53,31 +53,53 @@ function usertable(){
 
 	$user_result = mysql_query("SELECT * FROM user JOIN userclass ON user.user_id = userclass.user_id");
 
+	//
 	if(!$user_result)
-
 		return;
+
+
 	while ($row = mysql_fetch_array($user_result)) {
-	echo '<table class="card_table table table-striped table-bordered">';
-	echo "<tr>USER ".$row['User_Name']."</tr>";
-	echo "<td>Name</td><td>User_Name</td>";
-	echo "<td>Date_Created</td>";
-	echo "<td>User_ID</td>";
-	echo "<td>User_Class</td>";
-	echo "<tr id = ", $row['User_ID'], ">";
-	echo "<td>", $row['Name'], "</td>";
-	echo "<td>", $row['User_Name'], "</td>";
-	echo "<td>", $row['Date_Created'], "</td>";
-	echo "<td>", $row['User_ID'], "</td>";
-	echo "<td>", $row['User_Class'], "</td>";
-	echo "<td><input type = ","button"," value = ","DELETE"," class=\"del_btn\" rel=\"".$row['User_ID']."\"></td>";
+		//Hmm somthing is wrong giving strange artifacts in html
+		echo '<table class="card_table table table-striped table-bordered">'."\n";
+		echo "\t".'<thead>'."\n";
+		echo "\t"."\t".'<tr>'."\n";
+		echo "\t"."\t".'<th>Name</th><th>User_Name</th><th>Date_Created</th><th>User_ID</th><th>User_Class</th><th>&nbsp;</th>'."\n";
+		echo "\t"."\t".'</tr>'."\n";
+		echo "\t".'</thead>'."\n";
+		echo "\t".'<tbody>'."\n";
+		echo "\t"."\t".'<tr>'."\n";
+		echo "\t"."\t"."<td>".$row['Name']."</td>̈́";
+		echo "\t"."\t"."<td>".$row['User_Name']."</td>̈́";
+		echo "\t"."\t"."<td>".$row['Date_Created']."</td>̈́";
+		echo "\t"."\t"."<td>".$row['User_ID']."</td>̈́";
+		echo "\t"."\t"."<td>".$row['User_Class']."</td>̈́";
+		echo "\t"."\t".'<td><input type="button" value="DELETE" class="del_btn" rel="'.$row['User_ID'].'"></td>'."\n";
+		echo "\t"."\t".'</tr>'."\n";
+		echo "\t".'</tbody>'."\n";
+		echo '</table>'."\n";
+	/*
+	echo '<table class="card_table table table-striped table-bordered">'."\n";
+	echo "<tr>USER ".$row['User_Name']."</tr>"."\n";
+	echo "<td>Name</td><td>User_Name</td>"."\n";
+	echo "<td>Date_Created</td>"."\n";
+	echo "<td>User_ID</td>"."\n";
+	echo "<td>User_Class</td>"."\n";
+	echo "<tr id = ", $row['User_ID'], ">"."\n";
+	echo "<td>", $row['Name'], "</td>"."\n";
+	echo "<td>", $row['User_Name'], "</td>"."\n";
+	echo "<td>", $row['Date_Created'], "</td>"."\n";
+	echo "<td>", $row['User_ID'], "</td>"."\n";
+	echo "<td>", $row['User_Class'], "</td>"."\n";
+	echo "<td><input type = ","button"," value = ","DELETE"," class=\"del_btn\" rel=\"".$row['User_ID']."\"></td>"."\n";
 
 			  
 	echo "</tr>";
 	echo "</table>";
+	*/
 	//echo "<td>";
 	cardtable($row['User_ID']);
 	//echo "</td>";
-}
+	}
 
 	 
  
@@ -105,39 +127,39 @@ function cardtable($user_id){
 }
 
 function update_userclass(){
-	echo '<form id="fff" action="http://localhost/TNM065/projekt/update.php" method="post">';
+	echo '<form id="fff" class="form-inline"  action="" method="post" role="form">';
 
 	$result = mysql_query ("SELECT * FROM userclass");
-	echo "<select id='user_id' name='user_id'><option value=\"\">Select one…</option>";
+	echo '<select id="user_id" class="form-control" name="user_id"><option value="">Select user</option>';
 	while ($row = mysql_fetch_array($result)) {
 		echo "<option value='$row[User_ID]'>$row[User_ID]</option>";
 	}
 	echo "</select>";// Closing of list box
 
-	echo "<select id='user_class' name='user_class' ><option value=\"\">Select one…</option>";
+	echo '<select id="user_class" name="user_class" class="form-control" ><option value="">Select class</option>';
 	echo "<option value='admin'>admin</option>";
 	echo "<option value='user'>user</option>";
 	echo "</select>";// Closing of list box
-	echo "<input type = \"submit\" value = \"Change\" />";
+	echo '<input type="submit" class="btn btn-default" value="Change" />';
 	echo "</form>";	
 }
 
 function user_class_handeler(){
-if(isset($_POST["user_id"]) && isset($_POST['user_class']) ){
+	if(isset($_POST["user_id"]) && isset($_POST['user_class']) ){
 
-	$user_id = mysql_real_escape_string($_POST["user_id"]);
-	$user_class = mysql_real_escape_string($_POST['user_class']);
-	
-	if ($user_id != '0' && $user_class != '0'){
-		$query = "UPDATE userclass SET User_Class = '$user_class' WHERE User_ID = '$user_id'";
-		$result = mysql_query($query);
-		if($result){
+		$user_id = mysql_real_escape_string($_POST["user_id"]);
+		$user_class = mysql_real_escape_string($_POST['user_class']);
+		
+		if ($user_id != '0' && $user_class != '0'){
+			$query = "UPDATE userclass SET User_Class = '$user_class' WHERE User_ID = '$user_id'";
+			$result = mysql_query($query);
+			if($result){
 
-		}else {
-			die("Query failed");
+			}else {
+				die("Query failed");
+			}
 		}
 	}
-}
 }
 
 // Save card funtion

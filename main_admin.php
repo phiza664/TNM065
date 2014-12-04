@@ -69,6 +69,8 @@ user_class_handeler()
 				  <td>&nbsp;</td>
 				  <td><input type="submit" name="submit2" value="Registrera" /></td>
 				</tr>
+			</table>
+		</form>
 				<?php
 				usertable();
 				update_userclass();
@@ -77,8 +79,8 @@ user_class_handeler()
 					
 				}
 				?> 
-			</table>
-		</form>
+			
+		
 	</div>
 </body>
 </html>
