@@ -51,13 +51,18 @@ function printjs(){
 
 function usertable(){
 
-	$user_result = mysql_query("SELECT * FROM USER JOIN USERCLASS ON user.user_id = userclass.user_id");
+	$user_result = mysql_query("SELECT * FROM user JOIN userclass ON user.user_id = userclass.user_id");
 
+	if(!$user_result)
 
+		return;
 	while ($row = mysql_fetch_array($user_result)) {
-	echo "<table border=\"1\"><tr>USER ",$row['User_Name'],"</tr>";
-	echo "<td>Name</td><td>User_Name</td><td>Date_Created</td><td>User_ID</td><td>User_Class</td>";
-
+	echo '<table class="card_table table table-striped table-bordered">';
+	echo "<tr>USER ".$row['User_Name']."</tr>";
+	echo "<td>Name</td><td>User_Name</td>";
+	echo "<td>Date_Created</td>";
+	echo "<td>User_ID</td>";
+	echo "<td>User_Class</td>";
 	echo "<tr id = ", $row['User_ID'], ">";
 	echo "<td>", $row['Name'], "</td>";
 	echo "<td>", $row['User_Name'], "</td>";
@@ -80,8 +85,10 @@ function usertable(){
 
 function cardtable($user_id){
 	$card_result = mysql_query("SELECT DISTINCT Card_ID, Title, Content, Image_URL, Date_Created FROM 
-	CARD WHERE Card_ID  IN (SELECT Card_id FROM MAKES WHERE  makes.user_id = '$user_id')");
-	echo "<table  id=\"card$user_id\" class=\"card_table\" border=","1","><tr>CARDS FOR User_ID = '$user_id'</tr>";
+	card WHERE Card_ID  IN (SELECT Card_id FROM makes WHERE  makes.user_id = '$user_id')");
+	
+	echo '<table  id="card$user_id" class="card_table table table-striped table-bordered">';
+	echo "<tr>CARDS FOR User_ID = '$user_id'</tr>";
 	echo "<td>Card_ID</td><td>Titel</td><td>Content</td><td>Date_Created</td>";
 	while ($row2 = mysql_fetch_array($card_result)) {
 		echo "<tr  id = ", $row2['Card_ID'], ">";
@@ -98,9 +105,9 @@ function cardtable($user_id){
 }
 
 function update_userclass(){
-	echo "<form id=\"fff\" action=\"http://localhost/TNM065/projekt/update.php\" method=\"post\">";
+	echo '<form id="fff" action="http://localhost/TNM065/projekt/update.php" method="post">';
 
-	$result = mysql_query ("SELECT * FROM USERCLASS");
+	$result = mysql_query ("SELECT * FROM userclass");
 	echo "<select id='user_id' name='user_id'><option value=\"\">Select one…</option>";
 	while ($row = mysql_fetch_array($result)) {
 		echo "<option value='$row[User_ID]'>$row[User_ID]</option>";
@@ -122,7 +129,7 @@ if(isset($_POST["user_id"]) && isset($_POST['user_class']) ){
 	$user_class = mysql_real_escape_string($_POST['user_class']);
 	
 	if ($user_id != '0' && $user_class != '0'){
-		$query = "UPDATE USERCLASS SET User_Class = '$user_class' WHERE User_ID = '$user_id'";
+		$query = "UPDATE userclass SET User_Class = '$user_class' WHERE User_ID = '$user_id'";
 		$result = mysql_query($query);
 		if($result){
 
