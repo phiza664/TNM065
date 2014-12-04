@@ -200,7 +200,7 @@ function save_card(){
 		
 		//Create INSERT query
 		if($errflag != true){
-		$qry = "INSERT INTO CARD(Title, Content, Image_URL, Signature, Date_Created) 
+		$qry = "INSERT INTO card(Title, Content, Image_URL, Signature, Date_Created) 
 		VALUES('$title','$content', '$imageurl', '$signature', '$date')";
 		
 		$result = mysql_query($qry);
@@ -210,7 +210,7 @@ function save_card(){
 			$errmsg_arr .= 'Kortet sparat! ';
 			$user_id = $_SESSION['user_id']; //User_ID from login
 			//Insert Query to create link between card_id and user_id in makes.
-			$qry2 = "INSERT INTO MAKES(Card_ID, User_ID) VALUES ('$card_id', '$user_id')";
+			$qry2 = "INSERT INTO makes(Card_ID, User_ID) VALUES ('$card_id', '$user_id')";
 			$result = mysql_query($qry2);
 			if($result){
 				$errmsg_arr .= 'Kortet länkat med användare!';
