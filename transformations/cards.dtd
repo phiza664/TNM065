@@ -4,9 +4,10 @@
 <!ENTITY ccedil "&#231;">
 
 <!ELEMENT cards (card*)>
-<!ELEMENT card (title,id,user,date,contant?,signature?,image?)>
+<!ELEMENT card (title,id,user-id?,user,date,contant?,signature?,image?)>
 <!ELEMENT title (#PCDATA)>
 <!ELEMENT id (#PCDATA)>
+<!ELEMENT user-id (#PCDATA)>
 <!ELEMENT date (#PCDATA)>
 <!ELEMENT contant (#PCDATA)>
 <!ELEMENT signature (#PCDATA)>

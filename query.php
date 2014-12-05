@@ -1,5 +1,14 @@
 ﻿<?php
 
+//if content is sent 
+if(isset($_GET['action']) && isset($_GET['item']) ){
+	if( ($_GET['action'] == 'update') && ($_GET['item'] == 'card') ){
+		echo "loco";
+		update_card2();
+	}
+}
+
+
 function printjs(){
 
 	echo "<script>
@@ -229,14 +238,59 @@ function logout(){
 	if (isset($_POST['submit'])){
 		unset($_SESSION["inloggning"]);
 		unset($_SESSION["User_Class"]);
-		unset($_SESSION["User_ID"]);
+		unset($_SESSION["user_id"]);
 		header("Location: index.php" );
 	}
 }
 
-function update_card($card_id){
+function update_card(){
+	$user_id = $_SESSION['user_id'];
+	//if not loged in
+	if (!isset($user_id))
+		return;
+
+
+	$card_result = mysql_query("SELECT DISTINCT Card_ID, Title, Content, Image_URL, Date_Created FROM 
+	card WHERE Card_ID  IN (SELECT Card_id FROM makes WHERE  makes.user_id = '$user_id')");
+
+	echo '<form id="fff" class="form-inline"  action="" method="post" role="form">';
+
+	echo '<select id="card_id" class="form-control" name="card_id"><option value="">Select card</option>';
+	while ($row = mysql_fetch_array($card_result)) {
+		echo "<option value='$row[Card_ID]'>$row[Title]</option>";
+	}
+	echo "</select>";// Closing of list box
+
+	/*
+	echo '<select id="user_class" name="user_class" class="form-control" ><option value="">Select class</option>';
+	echo "<option value='admin'>admin</option>";
+	echo "<option value='user'>user</option>";
+	echo "</select>";// Closing of list box
+	echo '<input type="submit" class="btn btn-default" value="Change" />';
+	*/
+	echo "</form>";	
 
 }
+
+function update_card2(){
+	//will be set, check rather if empty
+	if(!isset($_POST['input-content']) || !isset($_POST['input-image']))
+	{
+		return "image or content not set";
+		http_response_code(404);
+		exit;
+	}
+	
+	//if not loged in
+	if (!isset($user_id))
+		return;
+
+	$inputContent = mysql_real_escape_string($_PUT['input-content']);
+	$inputImage = mysql_real_escape_string($_PUT['input-image']);
+	$user_id = $_SESSION['user_id'];
+	
+}
+
 
 function update_user(){
 

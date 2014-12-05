@@ -6,8 +6,11 @@
 	<div id="card-container"><!--BEGIN OF CARDS div lr h2 tagg?-->
 		 <xsl:for-each select="card"> 
 			<div class="card">
-				<xsl:attribute name="id">
+				<xsl:attribute name="data-card-id">
 					<xsl:value-of select="Card_ID"/>
+				</xsl:attribute>
+				<xsl:attribute name="data-user-id">
+					<xsl:value-of select="User_ID"/>
 				</xsl:attribute>
 				<div class="large-image-container">
 					<img class="large-image">

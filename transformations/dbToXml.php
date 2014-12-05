@@ -49,6 +49,7 @@ $xmlString .="<cards>";
 while($row = mysql_fetch_object($result))
 {
 	$xmlString .="<card>";
+	$xmlString .="<User_ID>".$user_id."</User_ID>";
 	foreach($row as $key => $value){
 		$xmlString .= "<$key>";
 		//$xmlString .= "<![CDATA[$value]]>";

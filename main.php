@@ -107,6 +107,8 @@ if(isset($_GET['format'])){
 
     <div class="container">
 
+    	<?php update_card(); ?>
+
 	    <div class ="logout">
 			<form id="logoutForm" action="" method="post" name="logoutform"> 
 				<button id="logoutbutton" type="submit" name="submit" class="btn btn-warning">Logout</button>	
@@ -171,8 +173,75 @@ if(isset($_GET['format'])){
 	         .end()
 	      .children( '.dropdown-toggle' ).dropdown( 'toggle' );
 	 
-	return false;
+		return false;
 	 
+	});
+
+	$(".card").each(function() {
+		var $link = $('<a>',{
+			text: 'edit card',
+			title: 'edit card',
+			href: '?action=edit&card-id='+$(this).attr("data-card-id")
+		});
+
+		var $btnEdit = $('<button>',{
+			text: 'edit card',
+			type: 'button',
+			class: 'btn btn-default',
+		});
+		$btnEdit.click(function() {
+			$form.collapse('toggle');
+		});
+		
+
+		var $btnSave = $('<button>',{
+			text: 'save changes',
+			type: 'submit',
+			class: 'btn btn-default',
+		});
+		
+		
+		var $image = $('<input>', {
+			name: 'input-image',
+			type: 'text',
+			class: 'form-control',
+			placeholder: 'image'
+		});
+
+		var $content = $('<textarea>', {
+			name: 'input-content',
+			class: 'form-control',
+			rows: '3',
+			placeholder: 'content'
+		});
+
+		
+		var $form = $('<form>', {class: 'update-card'}).append([$image, $content, $btnSave]);
+		$form.submit(function( event ) {
+			// Stop form from submitting normally
+			event.preventDefault();
+			$.ajax({
+		        type: "POST",
+		        url: "?action=update&item=card",
+		        data: $(event.target).serialize(),
+		        success: function(msg){
+		            console.log("updated");
+		            $form.collapse('hide');
+		        },
+		        error: function(){
+		            console.log("failed");
+		        }
+		    });
+
+		});
+		
+		$(this).after($form);
+		$(this).after($btnEdit);
+		$form.collapse({
+  			toggle: true
+		});
+		$form.collapse('hide');
+
 	});
 </script>
 
