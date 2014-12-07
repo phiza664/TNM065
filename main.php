@@ -178,6 +178,8 @@ if(isset($_GET['format'])){
 	});
 
 	$(".card").each(function() {
+		$card = $(this);
+
 		var $link = $('<a>',{
 			text: 'edit card',
 			title: 'edit card',
@@ -215,15 +217,26 @@ if(isset($_GET['format'])){
 			placeholder: 'content'
 		});
 
+
 		
-		var $form = $('<form>', {class: 'update-card'}).append([$image, $content, $btnSave]);
+		var $form = $('<form>', {
+			class: 'update-card', 
+			'data-card-id': $card.attr("data-card-id"),
+			'data-user-id': $card.attr("data-user-id")
+		}).append([$image, $content, $btnSave]);
+
 		$form.submit(function( event ) {
 			// Stop form from submitting normally
 			event.preventDefault();
+			var $target = $( event.currentTarget );
+			var data = $(event.target).serializeArray(); // convert form to array
+			data.push({name: "data-card-id", value: $target.attr("data-card-id")});
+			data.push({name: "data-user-id", value: $target.attr("data-user-id")});
+			
 			$.ajax({
 		        type: "POST",
 		        url: "?action=update&item=card",
-		        data: $(event.target).serialize(),
+		        data: $.param(data),
 		        success: function(msg){
 		            console.log("updated");
 		            $form.collapse('hide');

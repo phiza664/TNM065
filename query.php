@@ -3,8 +3,7 @@
 //if content is sent 
 if(isset($_GET['action']) && isset($_GET['item']) ){
 	if( ($_GET['action'] == 'update') && ($_GET['item'] == 'card') ){
-		echo "loco";
-		update_card2();
+		update_card_post();
 	}
 }
 
@@ -243,7 +242,8 @@ function logout(){
 	}
 }
 
-function update_card(){
+
+function update_card_select(){
 	$user_id = $_SESSION['user_id'];
 	//if not loged in
 	if (!isset($user_id))
@@ -272,22 +272,59 @@ function update_card(){
 
 }
 
-function update_card2(){
-	//will be set, check rather if empty
-	if(!isset($_POST['input-content']) || !isset($_POST['input-image']))
-	{
-		return "image or content not set";
-		http_response_code(404);
+
+/**
+ * Updates the card on post
+ * 
+ */
+function update_card_post(){
+
+	$inputContent = mysql_real_escape_string($_POST['input-content']);
+	$inputImage = mysql_real_escape_string($_POST['input-image']);
+	$cardId = mysql_real_escape_string($_POST['data-card-id']);
+	$user_id = $_SESSION['user_id'];
+
+	//no post action
+	if(!isset($_POST['input-content']) || !isset($_POST['input-content'])){
+		header('X-PHP-Response-Code: 403', true, 403);
+		echo '{ "errmsg":"! isset $_POST"}';
+		exit;
+	}
+	
+	//if not content is provided in the post
+	if(empty($_POST['input-content']) || empty($_POST['input-image']))
+	{	
+		header('X-PHP-Response-Code: 403', true, 403);
+		echo '{ "errmsg":"input missing"}';
 		exit;
 	}
 	
 	//if not loged in
-	if (!isset($user_id))
+	if (!isset($user_id)){
 		return;
+	}
 
-	$inputContent = mysql_real_escape_string($_PUT['input-content']);
-	$inputImage = mysql_real_escape_string($_PUT['input-image']);
-	$user_id = $_SESSION['user_id'];
+	
+	//returns result if card exists
+	$cardBelongsToUser = mysql_query ("SELECT Card_ID FROM makes WHERE User_ID = '$user_id' AND Card_ID = '$cardId' ");
+	if($cardBelongsToUser){
+
+		$query = "UPDATE card SET Content = '$inputContent', Image_URL = '$inputImage' WHERE Card_ID = '$cardId'";
+		$result = mysql_query($query);
+		if($result){
+
+		}else {
+
+			die("Query failed, could not update card");
+		}
+
+	}else{
+		//card does not belong to user
+	}
+
+	
+
+
 	
 }
 
