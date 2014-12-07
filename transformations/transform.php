@@ -30,11 +30,13 @@
 			// See which user agent is connecting
 			// and load which xsl style sheet to use
 			$UA = getenv('HTTP_USER_AGENT');
-			if (preg_match("/Symbian/", $UA) | preg_match("/Opera/", $UA) | preg_match("/Nokia/", $UA)) 
+			if (preg_match("/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/", $UA)) 
 			{
 				// if a mobile phone, use a wml stylesheet and set appropriate MIME type
-				header("Content-type:text/vnd.wap.wml");
-				$XSL->load('transformations/index-wml.xsl');
+				header("Content-type:text/html");
+				//header("Content-type:text/vnd.wap.wml");
+				$XSL->load('transformations/cards-html-small.xsl');
+				//$XSL->load('transformations/index-wml.xsl');
 			} 
 			else 
 			{
