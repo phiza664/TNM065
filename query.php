@@ -278,7 +278,7 @@ function update_card_select(){
  * 
  */
 function update_card_post(){
-
+	//mysqli
 	$inputContent = mysql_real_escape_string($_POST['input-content']);
 	$inputImage = mysql_real_escape_string($_POST['input-image']);
 	$cardId = mysql_real_escape_string($_POST['data-card-id']);
@@ -295,7 +295,7 @@ function update_card_post(){
 	if(empty($_POST['input-content']) || empty($_POST['input-image']))
 	{	
 		header('X-PHP-Response-Code: 403', true, 403);
-		echo '{ "errmsg":"input missing"}';
+		echo '{"errmsg":"input missing"}';
 		exit;
 	}
 	

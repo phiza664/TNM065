@@ -25,7 +25,7 @@
 				<div class="text-content">
 					<p>
 						<span class="qoute qoute-first">&#699;</span>
-						<xsl:value-of select="Content"/>
+						<span class="text-content-text"><xsl:value-of select="Content"/></span>
 						<span class="qoute qoute-last">&#8218;</span>
 					</p>
 				</div>

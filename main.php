@@ -107,7 +107,7 @@ if(isset($_GET['format'])){
 
     <div class="container">
 
-    	<?php update_card(); ?>
+    	
 
 	    <div class ="logout">
 			<form id="logoutForm" action="" method="post" name="logoutform"> 
@@ -179,6 +179,8 @@ if(isset($_GET['format'])){
 
 	$(".card").each(function() {
 		$card = $(this);
+		var imageText = $card.find(".large-image-container img").attr("src");
+		var cardText = $card.find(".text-content-text").text();
 
 		var $link = $('<a>',{
 			text: 'edit card',
@@ -207,15 +209,15 @@ if(isset($_GET['format'])){
 			name: 'input-image',
 			type: 'text',
 			class: 'form-control',
-			placeholder: 'image'
+			value: imageText
 		});
 
 		var $content = $('<textarea>', {
 			name: 'input-content',
 			class: 'form-control',
 			rows: '3',
-			placeholder: 'content'
 		});
+		$content.val(cardText);
 
 
 		
