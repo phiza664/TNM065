@@ -208,27 +208,28 @@ function save_card(){
 		
 		//Create INSERT query
 		if($errflag != true){
-		$qry = "INSERT INTO card(Title, Content, Image_URL, Signature, Date_Created) 
-		VALUES('$title','$content', '$imageurl', '$signature', '$date')";
-		
-		$result = mysql_query($qry);
-		$card_id = mysql_insert_id($link_id);
-		
-	 	if($result) {
-			$errmsg_arr .= 'Kortet sparat! ';
-			$user_id = $_SESSION['user_id']; //User_ID from login
-			//Insert Query to create link between card_id and user_id in makes.
-			$qry2 = "INSERT INTO makes(Card_ID, User_ID) VALUES ('$card_id', '$user_id')";
-			$result = mysql_query($qry2);
-			if($result){
-				$errmsg_arr .= 'Kortet länkat med användare!';
-			}else{
-				die("Query failed! Makes");
+			$qry = "INSERT INTO card(Title, Content, Image_URL, Signature, Date_Created) 
+			VALUES('$title','$content', '$imageurl', '$signature', '$date')";
+			
+			$result = mysql_query($qry);
+			$card_id = mysql_insert_id($link_id);
+			
+		 	if($result) {
+				$errmsg_arr .= 'Kortet sparat! ';
+				$user_id = $_SESSION['user_id']; //User_ID from login
+				//Insert Query to create link between card_id and user_id in makes.
+				$qry2 = "INSERT INTO makes(Card_ID, User_ID) VALUES ('$card_id', '$user_id')";
+				$result = mysql_query($qry2);
+				if($result){
+					$errmsg_arr .= 'Kortet länkat med användare!';
+					header("Location: main.php" );
+				}else{
+					die("Query failed! Makes");
+				}
 			}
-		}
-		else{
-			die("Query failed! Card");
-		} 
+			else{
+				die("Query failed! Card");
+			} 
 		}
 	}
 }
