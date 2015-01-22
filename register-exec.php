@@ -30,7 +30,7 @@ $link_id = db_connect();
 
 	//Check for duplicate användarnamn ID
 	if($user_name != '') {
-		$qry = "SELECT * FROM USER WHERE User_Name='$user_name'";
+		$qry = "SELECT * FROM user WHERE User_Name='$user_name'";
 		$result = mysql_query($qry);
 		if($result) {
 			if(mysql_num_rows($result) > 0) {
@@ -40,7 +40,7 @@ $link_id = db_connect();
 			@mysql_free_result($result);
 		}
 		else {
-			die("Query failed");
+			die("dublicate user query failed");
 		}
 	}
 	
@@ -49,15 +49,15 @@ $link_id = db_connect();
 		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 		$errmsg_arr = '';
 		session_write_close();
-		header("location: http://localhost/projekt/index.php");
+		header("location: index.php");
 		
 		exit();
 	}
 
 	//Create INSERT query
-	$qry = "INSERT INTO USER(User_Name, Password, Name, Date_Created) VALUES('$user_name','$password', '$name', '$date')";
-	$result = @mysql_query($qry);
-	$user_id = @mysql_insert_id($link_id);
+	$qry = "INSERT INTO user(User_Name, Password, Name, Date_Created) VALUES('$user_name','$password', '$name', '$date')";
+	$result = mysql_query($qry);
+	$user_id = mysql_insert_id($link_id);
 	//$class = "user";
 
 	$qry = "INSERT INTO userclass(User_Class, User_ID) VALUES('user','$user_id')";
@@ -72,7 +72,7 @@ $link_id = db_connect();
 		$_SESSION["inloggning"] = true;
 
 		// After registration user i moved to the main page
-		header("Location: projekt/main.php"); 
+		header("Location: main.php"); 
 		exit();
 	}else {
 		die("Query failed");

@@ -98,7 +98,7 @@ if(isset($_GET['format'])){
 			</tr>
 			<tr>
 			  <td>&nbsp;</td>
-			  <td><input type="submit" name="submit2" value="Registrera" /></td>
+			  <td><input type="submit" name="submit2" value="post" /></td>
 			</tr>
 		</form>
 
@@ -115,7 +115,7 @@ if(isset($_GET['format'])){
 			</form>
 		</div>
 
-		<form id="cardform" action="" method="post" name="cardform">
+		<form id="cardform" action="main.php" method="post" name="cardform">
 		<table>
 		  <h2>Post your awsome card!</h2>
 			<tr>
@@ -136,7 +136,7 @@ if(isset($_GET['format'])){
 			</tr>
 			<tr>
 			  <td>&nbsp;</td>
-			  <td><input type="submit" name="submit2" value="Registrera" /></td>
+			  <td><input type="submit" name="submit2" value="Post" /></td>
 			</tr>
 			<?php
 			if(isset($errmsg_arr)){
